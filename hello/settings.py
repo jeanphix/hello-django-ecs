@@ -13,6 +13,17 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
+
+
+def env(key, default=None):
+    try:
+        return os.environ[key]
+    except KeyError:
+        if default is not None:
+            return default
+
+        raise ImproperlyConfigured("`%s` environment var is required." % key)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q*$(zq&oq3#_sjf9gafptuk8z=3e!&-$(ayxp9ydbg1%bbr6(l'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

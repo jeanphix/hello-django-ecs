@@ -9,3 +9,9 @@ PostgreSQL database:
 ```
 export DATABASE_URL=postgres://<user>:<password>@<host>/<name>
 ```
+
+Secret key:
+
+```
+export SECRET_KEY=<secret>
+```
