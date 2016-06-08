@@ -26,6 +26,10 @@ def env(key, default=None):
         raise ImproperlyConfigured("`%s` environment var is required." % key)
 
 
+def bool_value(key, default=0):
+    return bool(int(env(key, default)))
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,7 +41,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool_value('DEBUG')
 
 ALLOWED_HOSTS = [env('DOMAIN_NAME')]
 

@@ -21,3 +21,9 @@ Allowed host:
 ```
 export DOMAIN_NAME=<domain>
 ```
+
+Debug mode:
+
+```
+export DEBUG=1
+```
