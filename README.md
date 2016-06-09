@@ -48,3 +48,20 @@ Running the app
 ```
 PORT=8000 uwsgi uwsgi.ini
 ```
+
+Docker
+------
+
+Build:
+
+```
+docker build -t app:0.1 .
+
+docker run \
+    -p 8000:8000 \
+    -e PORT=8000 \
+    -e SECRET_KEY=secret \
+    -e DOMAIN_NAME=localhost \
+    -e DATABASE_URL=sqlite:// \
+    app:0.1
+```
