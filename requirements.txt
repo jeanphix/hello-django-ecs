@@ -1,3 +1,5 @@
+boto==2.40.0
 dj-database-url==0.4.1
 Django==1.9.7
+django-storages==1.4.1
 psycopg2==2.6.1

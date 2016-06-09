@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -126,5 +127,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
+# AWS
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', False)
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', False)
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', False)
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+if AWS_STORAGE_BUCKET_NAME:
+    AWS_QUERYSTRING_AUTH = False
+    AWS_IS_GZIPPED = True
+
+    # Storages
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = STATICFILES_STORAGE
+
+    # Urls
+    AWS_S3_CUSTOM_DOMAIN = env("CDN_DOMAIN_NAME")
