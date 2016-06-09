@@ -41,3 +41,10 @@ CDN:
 ```
 export CDN_DOMAIN_NAME=<domain>
 ```
+
+Running the app
+---------------
+
+```
+PORT=8000 uwsgi uwsgi.ini
+```
